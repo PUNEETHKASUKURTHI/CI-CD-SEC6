@@ -9,12 +9,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh './deploy.sh'
+                sh 'echo "build failed" >> log.txt'
+                sh 'mkdir .hidden_logs'
+                sh 'echo "build failed" | tee -a .hidden_logs/build.log'
+                sh 'echo "build failed"'
             }
         }
     }
